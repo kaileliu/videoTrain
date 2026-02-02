@@ -27,13 +27,13 @@ your_data/
     ├── sample_000_data2.parquet
     └── ...
 
+
 # 2. 训练
 python train_video.py --data-root your_data
 
 # 3. 完成！
 ```
 
-📖 **详细指南**: [VIDEO_TRAINING_GUIDE.md](VIDEO_TRAINING_GUIDE.md)
 
 ---
 
@@ -45,7 +45,6 @@ python train_video.py --data-root your_data
 python train.py --config configs/default.yaml
 ```
 
-📖 **详细指南**: [DATA_PREPARATION.md](DATA_PREPARATION.md)
 
 ## 数据格式
 
