@@ -1,0 +1,77 @@
+# Sim-to-Real Calibration Config
+
+# Data paths
+data:
+  real_data_path: "data/real"
+  sim_data_path: "data/sim"
+  output_path: "outputs"
+  
+# Video settings
+video:
+  above_camera: "observation.images.above"
+  front_camera: "observation.images.front"
+  fps: 30
+  frame_width: 224
+  frame_height: 224
+  sequence_length: 16  # Number of frames per sequence
+  
+# Model architecture
+model:
+  name: "SimToRealCalibrator"
+  vision_encoder:
+    type: "resnet18"  # resnet18, resnet50, efficientnet
+    pretrained: true
+    freeze_backbone: false
+  temporal_encoder:
+    type: "transformer"  # transformer, lstm, gru
+    hidden_dim: 256
+    num_layers: 4
+    num_heads: 8
+    dropout: 0.1
+  fusion:
+    type: "concat"  # concat, attention, cross_attention
+  output_dim: 3  # (dx, dy, dz)
+  
+# Training settings
+training:
+  batch_size: 16
+  num_epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  optimizer: "adamw"  # adam, adamw, sgd
+  scheduler: "cosine"  # cosine, step, plateau
+  warmup_epochs: 5
+  gradient_clip: 1.0
+  
+# Loss settings
+loss:
+  type: "mse"  # mse, l1, smooth_l1, huber
+  weights:
+    position: 1.0
+    velocity: 0.5  # Optional: penalize velocity mismatch
+    
+# Validation
+validation:
+  val_split: 0.15
+  test_split: 0.15
+  metric: "mse"  # mse, mae, rmse
+  
+# Checkpointing
+checkpoint:
+  save_dir: "checkpoints"
+  save_freq: 5  # Save every N epochs
+  keep_last_n: 5
+  
+# Logging
+logging:
+  log_dir: "logs"
+  log_freq: 10  # Log every N steps
+  use_tensorboard: true
+  
+# Hardware
+device: "cuda"  # cuda, cpu, mps
+num_workers: 4
+pin_memory: true
+
+# Random seed
+seed: 42

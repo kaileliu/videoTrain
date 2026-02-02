@@ -1,0 +1,29 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+pandas>=2.0.0
+pyarrow>=12.0.0
+
+# Video processing
+opencv-python>=4.8.0
+av>=10.0.0
+
+# Data handling
+h5py>=3.9.0
+tqdm>=4.65.0
+
+# Visualization
+matplotlib>=3.7.0
+tensorboard>=2.13.0
+
+# Configuration
+pyyaml>=6.0
+omegaconf>=2.3.0
+
+# LeRobot (optional, if using their utilities)
+# lerobot>=0.1.0
+
+# Utilities
+scipy>=1.11.0
+scikit-learn>=1.3.0
